@@ -6,7 +6,9 @@ import 'package:clipcuts/view/screen/login/repository/login_repository.dart';
 import 'package:clipcuts/view/screen/signup/bloc/signup_bloc.dart';
 import 'package:clipcuts/view/screen/splash_screen/splash_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,6 +16,9 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   await SharedPrefs.init();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
   //await Firebase.initializeApp();
   runApp(MultiBlocProvider(
     providers: [
@@ -44,9 +49,6 @@ class MyApp extends StatelessWidget {
       builder: (_ , child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          // SystemChrome.setPreferredOrientations([
-          //   DeviceOrientation.portraitUp,
-          // ]),
           localizationsDelegates: context.localizationDelegates,
           supportedLocales: context.supportedLocales,
           locale: context.locale,

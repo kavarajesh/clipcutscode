@@ -3,11 +3,13 @@ import 'package:clipcuts/resources/shared/shared_pref.dart';
 import 'package:clipcuts/view/screen/login/login_screen.dart';
 import 'package:clipcuts/view/widget/app_button.dart';
 import 'package:clipcuts/view/widget/comman.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../resources/const/app_colors.dart';
+import '../../../resources/const/const.dart';
 import '../../../resources/const/image_const.dart';
 import '../../widget/loading.dart';
 
@@ -31,22 +33,16 @@ class _HomeScreenState extends State<HomeScreen> {
             decoration: BoxDecoration(
               color: primaryColor,
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius
-                    .circular(30)
-                    .r,
-                bottomRight: Radius
-                    .circular(30)
-                    .r,
+                bottomLeft: Radius.circular(30).r,
+                bottomRight: Radius.circular(30).r,
               ),
             ),
-            padding: EdgeInsets
-                .only(
+            padding: EdgeInsets.only(
               top: 50,
               bottom: 10,
               right: 10,
               left: 20,
-            )
-                .r,
+            ).r,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -95,21 +91,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 Expanded(
                   child: ListView.builder(
                     itemCount: 8,
-                    padding: EdgeInsets
-                        .symmetric(horizontal: 20)
-                        .r,
+                    padding: EdgeInsets.symmetric(horizontal: 20).r,
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return Container(
-                        margin: EdgeInsets
-                            .only(bottom: 14)
-                            .r,
-                        padding: EdgeInsets
-                            .symmetric(
+                        margin: EdgeInsets.only(bottom: 14).r,
+                        padding: EdgeInsets.symmetric(
                           horizontal: 14,
                           vertical: 16,
-                        )
-                            .r,
+                        ).r,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(14),
@@ -136,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   children: [
                                     Row(
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                       spacing: 10,
                                       children: [
                                         Text(
@@ -148,18 +138,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ),
                                         ),
                                         Container(
-                                          padding: EdgeInsets
-                                              .symmetric(
+                                          padding: EdgeInsets.symmetric(
                                             vertical: 4,
                                             horizontal: 8,
-                                          )
-                                              .r,
+                                          ).r,
                                           decoration: BoxDecoration(
                                             color: lightBlueColor,
                                             borderRadius:
-                                            BorderRadiusGeometry.circular(
-                                              20.r,
-                                            ),
+                                                BorderRadiusGeometry.circular(
+                                                  20.r,
+                                                ),
                                           ),
                                           child: Text(
                                             "Male",
@@ -194,9 +182,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                textWidget(matingDate, "12/12/23"),
-                                textWidget(breedingPartner, "Emmy"),
-                                textWidget(Pregnancy, "Y"),
+                                textWidget(matingDate.tr(), "12/12/23"),
+                                textWidget(breedingPartner.tr(), "Emmy"),
+                                textWidget(pregnancy.tr(), "Y"),
                               ],
                             ),
                           ],
@@ -235,13 +223,11 @@ class _HomeScreenState extends State<HomeScreen> {
           print(value);
         },
         decoration: InputDecoration(
-          hintText: searchText,
+          hintText: searchText.tr(),
           contentPadding: EdgeInsets.symmetric(vertical: 10.h),
           hintStyle: const TextStyle(color: Colors.grey, fontSize: 14),
           suffixIcon: Container(
-            padding: EdgeInsets
-                .symmetric(vertical: 8)
-                .r,
+            padding: EdgeInsets.symmetric(vertical: 8).r,
             child: SvgPicture.asset(searchSvg),
           ),
           border: InputBorder.none,
@@ -296,7 +282,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Text(
-                logoutMessage,
+                logoutMessage.tr(),
                 style: textStyle(fontSize: 22, fontWeight: FontWeight.w700),
                 textAlign: TextAlign.center,
               ),
@@ -306,7 +292,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Expanded(
                     child: AppButton(
-                      buttonText: yes,
+                      buttonText: yes.tr(),
                       color: lightGrayColor,
                       style: textStyle(
                         fontSize: 16,
@@ -319,7 +305,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   Expanded(
                     child: AppButton(
-                      buttonText: no,
+                      buttonText: no.tr(),
                       onTap: () {
                         Navigator.pop(context, false);
                       },
@@ -338,17 +324,11 @@ class _HomeScreenState extends State<HomeScreen> {
         dismissLoading();
         await SharedPrefs.removeData();
         Navigator.pushAndRemoveUntil(
-            context, MaterialPageRoute(builder: (context) => LoginScreen()), (
-            route) => false);
+          context,
+          MaterialPageRoute(builder: (context) => LoginScreen()),
+          (route) => false,
+        );
       }
     });
   }
 }
-
-const searchText = "Search by name or pet ID";
-const matingDate = "Mating date";
-const breedingPartner = "Breeding Partner";
-const Pregnancy = "Pregnancy";
-const logoutMessage = "Are you sure you want to logout?";
-const yes = "YES";
-const no = "NO";

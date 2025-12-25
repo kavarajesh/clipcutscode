@@ -24,7 +24,12 @@
   "male": "Male",
   "female": "Female",
   "signUpText1": "Male",
-  "signUpText2": "Female"
-
-
+  "signUpText2": "Female",
+  "searchText": "Search by name or pet ID",
+  "matingDate": "Mating date",
+  "breedingPartner": "Breeding Partner",
+  "pregnancy": "Pregnancy",
+  "logoutMessage": "Are you sure you want to logout?",
+  "yes": "YES",
+  "no": "NO"
 }

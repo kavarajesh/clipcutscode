@@ -24,6 +24,12 @@
   "male": "पुरुष",
   "female": "महिला",
   "signUpText1": "पुरुष",
-  "signUpText2": "महिला"
-
+  "signUpText2": "महिला",
+  "searchText": "नाम या पालतू जानवर की आईडी से खोजें",
+  "matingDate": "संभोग की तारीख",
+  "breedingPartner": "प्रजनन साथी",
+  "pregnancy": "गर्भावस्था",
+  "logoutMessage": "क्या आप लॉग आउट करना चाहते हैं?",
+  "yes": "हाँ",
+  "no": "नहीं"
 }
