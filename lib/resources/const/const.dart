@@ -40,3 +40,12 @@ const alreadyAc = "alreadyAc";
 const signUpText = "signUpText";
 const signUpText1 = "signUpText1";
 const signUpText2 = "signUpText2";
+
+// home screen
+const searchText = "searchText";
+const matingDate = "matingDate";
+const breedingPartner = "breedingPartner";
+const pregnancy = "pregnancy";
+const logoutMessage = "logoutMessage";
+const yes = "yes";
+const no = "no";
