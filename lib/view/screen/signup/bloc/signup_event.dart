@@ -17,3 +17,5 @@ class SelectGenderEvent extends SignupEvent {
   @override
   List<Object?> get props => [gender];
 }
+
+class SignupDataEvent extends SignupEvent {}

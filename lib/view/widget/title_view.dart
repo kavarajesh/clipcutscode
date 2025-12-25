@@ -28,15 +28,13 @@ class TitleView extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder:
-                          (context) => LanguageScreen()),
+                      MaterialPageRoute(builder: (context) => LanguageScreen()),
                     );
                   },
                   child: Container(
                     height: 100.h,
                     width: 100.h,
                     margin: EdgeInsets.only(top: 160, bottom: 20).r,
-                    //padding: EdgeInsets.all(16).r,
                     child: Card(
                       color: Colors.white,
                       child: Padding(

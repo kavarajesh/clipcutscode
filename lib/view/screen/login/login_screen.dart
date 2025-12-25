@@ -174,9 +174,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) => LanguageScreen(),
-                      ),
+                      MaterialPageRoute(builder: (context) => LanguageScreen()),
                     );
                   },
                   child: Text(
@@ -209,8 +207,6 @@ class _LoginScreenState extends State<LoginScreen> {
               },
             ),
           ),
-
-          Spacer(),
           Padding(
             padding: const EdgeInsets.only(bottom: 20).r,
             child: RichText(

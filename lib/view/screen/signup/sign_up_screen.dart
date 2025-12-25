@@ -1,4 +1,5 @@
 import 'package:clipcuts/resources/const/app_colors.dart';
+import 'package:clipcuts/resources/const/validation.dart';
 import 'package:clipcuts/view/screen/signup/bloc/signup_event.dart';
 import 'package:clipcuts/view/screen/signup/bloc/signup_state.dart';
 import 'package:clipcuts/view/widget/app_button.dart';
@@ -28,6 +29,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
   FocusNode mobileFocus = FocusNode();
   FocusNode confirmPassFocus = FocusNode();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  TextEditingController passwordController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -77,101 +80,115 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     ],
                   ),
-                  AppTextField(
-                    hint: nameText.tr(),
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: Icon(
-                        Icons.person,
-                        color: nameFocus.hasFocus ? primaryColor : greyColor,
-                        size: 26.h,
-                      ),
-                    ),
-                    focusNode: nameFocus,
-                  ),
-                  AppTextField(
-                    hint: emailAddress.tr(),
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.only(right: 20).r,
-                      child: emailFocus.hasFocus
-                          ? SvgPicture.asset(mailSvg)
-                          : SvgPicture.asset(greyMailSvg),
-                    ),
-                    focusNode: emailFocus,
-                  ),
-                  AppTextField(
-                    hint: mobileNumber.tr(),
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: Icon(
-                        Icons.call,
-                        color: mobileFocus.hasFocus ? primaryColor : greyColor,
-                        size: 26.h,
-                      ),
-                    ),
-                    focusNode: mobileFocus,
-                  ),
+
                   BlocBuilder<SignupBloc, SignupState>(
-                    builder: (context, state) {
-                      return Row(
-                        spacing: 20.h,
+                      builder: (context, state) {
+                      return Column(
+                        spacing: 14,
                         children: [
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: () {
-                                context.read<SignupBloc>().add(
-                                  SelectGenderEvent(Gender.male),
-                                );
-                              },
-                              child: genderCard(
-                                male,
-                                state.selectedGender == Gender.male,
+                          AppTextField(
+                            hint: nameText.tr(),
+                            suffixIcon: Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: Icon(
+                                Icons.person,
+                                color: nameFocus.hasFocus ? primaryColor : greyColor,
+                                size: 26.h,
                               ),
                             ),
+                            validator:(value) =>  validateName(value),
+                            focusNode: nameFocus,
                           ),
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: () {
-                                context.read<SignupBloc>().add(
-                                  SelectGenderEvent(Gender.female),
-                                );
-                              },
-                              child: genderCard(
-                                female,
-                                state.selectedGender == Gender.female,
+                          AppTextField(
+                            hint: emailAddress.tr(),
+                            suffixIcon: Padding(
+                              padding: const EdgeInsets.only(right: 20).r,
+                              child: emailFocus.hasFocus
+                                  ? SvgPicture.asset(mailSvg)
+                                  : SvgPicture.asset(greyMailSvg),
+                            ),
+                            focusNode: emailFocus,
+                            validator:(email) =>  validateRequiredEmail(email),
+                          ),
+                          AppTextField(
+                            hint: mobileNumber.tr(),
+                            suffixIcon: Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: Icon(
+                                Icons.call,
+                                color: mobileFocus.hasFocus ? primaryColor : greyColor,
+                                size: 26.h,
                               ),
                             ),
+                            focusNode: mobileFocus,
+                            validator: (value) => validateMobile(value),
+                          ),
+                           Row(
+                                spacing: 20.h,
+                                children: [
+                                  Expanded(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        context.read<SignupBloc>().add(
+                                          SelectGenderEvent(Gender.male),
+                                        );
+                                      },
+                                      child: genderCard(
+                                        male,
+                                        state.selectedGender == Gender.male,
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        context.read<SignupBloc>().add(
+                                          SelectGenderEvent(Gender.female),
+                                        );
+                                      },
+                                      child: genderCard(
+                                        female,
+                                        state.selectedGender == Gender.female,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+
+                          AppTextField(
+                            hint: passwordText.tr(),
+                            suffixIcon: Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: Icon(
+                                Icons.visibility,
+                                color: passFocus.hasFocus ? primaryColor : greyColor,
+                                size: 26.h,
+                              ),
+                            ),
+                            validator: (value) => validatePassword(value),
+                            focusNode: passFocus,
+                            controller: passwordController,
+                          ),
+                          AppTextField(
+                            hint: confirmPassword.tr(),
+                            suffixIcon: Padding(
+                              padding: const EdgeInsets.only(right: 20),
+                              child: Icon(
+                                Icons.visibility_off_sharp,
+                                color: confirmPassFocus.hasFocus
+                                    ? primaryColor
+                                    : greyColor,
+                                size: 26.h,
+                              ),
+                            ),
+                            validator: (value) => validateConfirmPassword(value,passwordController.text),
+                            focusNode: confirmPassFocus,
                           ),
                         ],
                       );
-                    },
+                    }
                   ),
-                  AppTextField(
-                    hint: passwordText.tr(),
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: Icon(
-                        Icons.visibility,
-                        color: passFocus.hasFocus ? primaryColor : greyColor,
-                        size: 26.h,
-                      ),
-                    ),
-                    focusNode: passFocus,
-                  ),
-                  AppTextField(
-                    hint: confirmPassword.tr(),
-                    suffixIcon: Padding(
-                      padding: const EdgeInsets.only(right: 20),
-                      child: Icon(
-                        Icons.visibility_off_sharp,
-                        color: confirmPassFocus.hasFocus
-                            ? primaryColor
-                            : greyColor,
-                        size: 26.h,
-                      ),
-                    ),
-                    focusNode: confirmPassFocus,
-                  ),
+
                 ],
               ),
             ),

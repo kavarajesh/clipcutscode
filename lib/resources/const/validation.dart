@@ -32,3 +32,38 @@ String? validatePassword(String? value) {
   }
   return null; // Return null if the password is valid
 }
+
+String? validateName(String? value) {
+  if (value == null || value.trim().isEmpty) {
+    return "Name is required";
+  }
+  if (value.trim().length < 3) {
+    return "Name must be at least 3 characters";
+  }
+  return null;
+}
+
+String? validateMobile(String? value) {
+  if (value == null || value.isEmpty) {
+    return "Password is required";
+  }
+  if (value.length < 10) {
+    return "Password must be at least 10 characters long";
+  }
+  return null;
+}
+
+
+
+String? validateConfirmPassword(
+    String? value,
+    String password,
+    ) {
+  if (value == null || value.isEmpty) {
+    return "Confirm password is required";
+  }
+  if (value != password) {
+    return "Passwords do not match";
+  }
+  return null;
+}

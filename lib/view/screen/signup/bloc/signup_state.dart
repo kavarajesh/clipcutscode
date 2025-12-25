@@ -15,3 +15,5 @@ class SignupState extends Equatable {
   @override
   List<Object?> get props => [selectedGender];
 }
+
+class SignupDataState extends SignupState {}
