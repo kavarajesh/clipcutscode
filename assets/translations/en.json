@@ -1,0 +1,30 @@
+{
+  "chooseLanguage": "Choose Language",
+  "chooseLanguageMsg": "Please select your preferred language",
+  "continueText": "CONTINUE",
+  "emailText": "Email",
+  "passwordText": "Password",
+  "rememberMe": "Remember me",
+  "forgotPassword": "Forgot password?",
+  "signIn": "SIGN IN",
+  "welcomeBack": "Welcome Back",
+  "helloMessage": "Hello there. sign in to continue",
+  "signUP": "Sign Up",
+  "dontAccount": "Don't have an account? ",
+  "hiWelcomeThere": "Hi welcome there",
+  "pleaseCreateAc": "Please create your new account",
+  "uploadProfileText": "Upload profile picture",
+  "nameText": "Name",
+  "emailAddress": "Email address",
+  "mobileNumber": "Mobile number",
+  "confirmPassword": "Confirm Password",
+  "signupAgreeText": "By Signing up, you agree to our Terms & Privacy Policy.",
+  "alreadyAc": "Already have an account? ",
+  "signUpText": "SIGN UP",
+  "male": "Male",
+  "female": "Female",
+  "signUpText1": "Male",
+  "signUpText2": "Female"
+
+
+}
