@@ -23,7 +23,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   TextEditingController searchController = TextEditingController();
-
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,

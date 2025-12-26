@@ -14,16 +14,25 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   LoginBloc(this.loginRepostitory) : super(LoginInitialState()) {
     on<LoginSubmitEvent>((event, emit) async {
-      emit(state.copyWith(isLoading: true,error: null));
+      emit(state.copyWith(isLoading: true, error: null));
       try {
         final res = await _login(event.email, event.password);
         final userDataModel = UserDataModel.fromJson(res);
         if (userDataModel.status == 200) {
           await SharedPrefs.setUserData(userDataModel);
+          if (userDataModel.data != null && userDataModel.data?.token != null) {
+            await SharedPrefs.setUserToken(userDataModel.data!.token!);
+          }
           emit(state.copyWith(isLoading: false, response: userDataModel));
           emit(LoginSuccessState(userDataModel));
         } else {
-          emit(state.copyWith(isLoading: false, error: userDataModel.message,response: userDataModel));
+          emit(
+            state.copyWith(
+              isLoading: false,
+              error: userDataModel.message,
+              response: userDataModel,
+            ),
+          );
         }
       } catch (e) {
         emit(state.copyWith(isLoading: false, error: e.toString()));
